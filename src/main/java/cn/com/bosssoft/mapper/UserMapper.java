@@ -13,7 +13,7 @@ public interface UserMapper {
 
     List<User> selectUserList() throws IOException;
 
-    User selectUserByUsername(String username) throws IOException;
+    User selectUserById(Integer userId) throws IOException;
 
     User insertUser(User user) throws IOException;
 
