@@ -1,7 +1,7 @@
 package cn.com.bosssoft.server.impl;
 
 import cn.com.bosssoft.model.Account;
-import org.springframework.stereotype.Service;
+import cn.com.bosssoft.model.User;
 
 /**
  * @author Shixiaodong
@@ -9,6 +9,12 @@ import org.springframework.stereotype.Service;
  */
 
 public interface AccountServer {
+    /*
+    * @Description:
+    * @param :  [account, user]
+    * @return : void
+    */
+    void insertAccount(Account account, User user);
 
     Boolean loginCheck(Account account);
 

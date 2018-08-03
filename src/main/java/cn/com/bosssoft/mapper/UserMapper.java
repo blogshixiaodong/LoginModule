@@ -2,6 +2,7 @@ package cn.com.bosssoft.mapper;
 
 import cn.com.bosssoft.model.User;
 
+import javax.swing.*;
 import java.io.IOException;
 import java.util.List;
 
@@ -15,6 +16,11 @@ public interface UserMapper {
 
     User selectUserById(Integer userId) throws IOException;
 
-    User insertUser(User user) throws IOException;
+    /*
+    * @Description: 插入用户信息
+    * @param :  [user]
+    * @return : Integer
+    */
+    Integer insertUser(User user) throws IOException;
 
 }

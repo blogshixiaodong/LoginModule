@@ -2,6 +2,10 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <!-- 类的全限定名 -->
 <mapper namespace="cn.com.bosssoft.mapper.AccountMapper">
+
+    <insert id="insertAccount" keyProperty="accountId" useGeneratedKeys="true" parameterType="cn.com.bosssoft.model.Account">
+      INSERT INTO account(password,userid) values(#{password},#{userId})
+    </insert>
     <!-- 自定义返回结果集 -->
     <resultMap id="accountMap" type="cn.com.bosssoft.model.Account">
         <id property="accountId" column="accountId" javaType="java.lang.Integer" />

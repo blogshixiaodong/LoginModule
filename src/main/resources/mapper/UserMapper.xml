@@ -2,6 +2,9 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <!-- 类的全限定名 -->
 <mapper namespace="cn.com.bosssoft.mapper.UserMapper">
+    <insert id="insertUser" keyProperty="userId" useGeneratedKeys="true" parameterType="cn.com.bosssoft.model.User">
+        INSERT INTO user(username,gender,address) values (#{username},#{gender},#{address})
+    </insert>
     <!-- 自定义返回结果集 -->
     <resultMap id="user" type="cn.com.bosssoft.model.User">
         <id property="id" column="id" javaType="java.lang.Integer" />
@@ -16,9 +19,5 @@
     <select id="selectUserByUsername" resultMap="user">
         SELECT * FROM user WHERE username = #{username};
     </select>
-
-    <insert id="insertUser" parameterType="cn.com.bosssoft.model.User">
-        INSERT INTO user VALUES(#{username}, #{password});
-    </insert>
 
 </mapper>
