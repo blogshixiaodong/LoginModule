@@ -22,7 +22,7 @@
                 用户注册
             </div>
             <div class="panel-body">
-                <form style='margin:0px' class='form-horizontal' id='register' action="user/register" >
+                <form style='margin:0px' class='form-horizontal' id='register' action="user/register" method="POST" >
                     <div class='form-group row'>
                         <label  class='col-xs-2 control-label'>账号*</label>
                         <div class='col-xs-10'>
@@ -62,7 +62,7 @@
                     </div>
                     <div class='form-group'>
                         <div class='col-xs-10 col-xs-offset-2'>
-                            <input   class="submit btn btn-default" type="submit" value="注册">
+                            <input id="submit"   class="submit btn btn-default" type="submit" value="注册" onclick="return validate()">
                             <input  class="reset btn btn-default" type="reset" value="重置">
                         </div>
                     </div>
@@ -78,6 +78,26 @@
 <script type="text/javascript" src="vendors/bootstrap-table/js/bootstrap-table.min.js"></script>
 <script type="text/javascript" src="vendors/bootstrap-table/js/bootstrap-table-zh-CN.min.js"></script>
 <script type="text/javascript" src="module/js/common/common.js"></script>
+<script>
+    function validate(){
+        var gender = $('input[name="gender"]').val();
+        var accountId = $("#accountId").val();
+        var password = $("#password").val();
+        var password1 = $("#password1").val();
+        var username = $("#username").val();
+        var address = $("#address").val();
+        if(gender == "" || accountId == "" || password== "" || password1 == "" || username == "" || address == ""){
+            alert("请将信息填写完整");
+            return false;
+        }
+        if(password != password1){
+            alert("两次尼玛不匹配");
+            return false;
+        }
+        return true;
+    }
 
+
+</script>
 </body>
 </html>
