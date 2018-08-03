@@ -7,6 +7,7 @@ import cn.com.bosssoft.model.User;
  * @author Shixiaodong
  * @date 2018/8/3 9:33
  */
+
 public interface AccountServer {
     /*
     * @Description:
@@ -14,4 +15,7 @@ public interface AccountServer {
     * @return : void
     */
     void insertAccount(Account account, User user);
+
+    Boolean loginCheck(Account account);
+
 }

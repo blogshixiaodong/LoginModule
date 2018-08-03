@@ -35,4 +35,23 @@ public class Account {
     public void setUserId(Integer userId) {
         this.userId = userId;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Account)) return false;
+
+        Account account = (Account) o;
+
+        if (getAccountId() != null ? !getAccountId().equals(account.getAccountId()) : account.getAccountId() != null)
+            return false;
+        return getPassword() != null ? getPassword().equals(account.getPassword()) : account.getPassword() == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = getAccountId() != null ? getAccountId().hashCode() : 0;
+        result = 31 * result + (getPassword() != null ? getPassword().hashCode() : 0);
+        return result;
+    }
 }

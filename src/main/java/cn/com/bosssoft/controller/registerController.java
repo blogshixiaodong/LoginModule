@@ -20,6 +20,6 @@ public class registerController {
     @RequestMapping(value = "/register" )
     public String register(User user, Account account){
         accountServer.insertAccount(account,user);
-        return "";
+        return "/index";
     }
 }

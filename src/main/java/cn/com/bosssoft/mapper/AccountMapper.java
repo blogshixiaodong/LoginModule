@@ -14,4 +14,8 @@ public interface AccountMapper {
     * @return : void
     */
     void insertAccount(Account account);
+
+    Account selectAccountById(Integer accountId);
+
+
 }

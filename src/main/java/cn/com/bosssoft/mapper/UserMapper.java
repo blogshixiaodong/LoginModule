@@ -23,5 +23,4 @@ public interface UserMapper {
     */
     Integer insertUser(User user) throws IOException;
 
-
 }
