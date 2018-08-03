@@ -17,5 +17,4 @@ public interface UserMapper {
 
     User insertUser(User user) throws IOException;
 
-
 }

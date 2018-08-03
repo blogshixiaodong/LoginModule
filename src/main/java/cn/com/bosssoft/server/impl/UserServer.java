@@ -1,5 +1,6 @@
 package cn.com.bosssoft.server.impl;
 
+import cn.com.bosssoft.model.Account;
 import cn.com.bosssoft.model.User;
 
 /**

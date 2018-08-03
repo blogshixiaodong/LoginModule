@@ -1,0 +1,171 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<!doctype html>
+<html lang="en">
+<head>
+    <title>用户注册页面</title>
+    <link rel="stylesheet" href="vendors/bootstrap/css/bootstrap.css" />
+    <link rel="stylesheet" href="vendors/bootstrap-table/css/bootstrap-table.min.css" />
+    <link rel="stylesheet" href="module/css/common.css" />
+    <link rel="stylesheet" href="module/css/index.css" />
+
+    <link rel="stylesheet" href="module/css/common.css" />
+    <link rel="stylesheet" href="module/css/index.css" />
+
+</head>
+<body>
+<div class="container">
+    <!-- 导航栏部分 -->
+
+    <div class="row">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                用户注册
+            </div>
+            <div class="panel-body">
+                <form style='margin:0px' class='form-horizontal' id='register' >
+                    <div class='form-group row'>
+                        <label  class='col-xs-2 control-label'>账号*</label>
+                        <div class='col-xs-10'>
+                            <input type='text' class='form-control ' name='accountId' id='accountId'>
+                        </div>
+                    </div>
+                    <div class='form-group row'>
+                        <label  class='col-xs-2 control-label'>密码*</label>
+                        <div class='col-xs-10'>
+                            <input type='password' class='form-control ' name='password' id='password'>
+                        </div>
+                    </div>
+                    <div class='form-group row'>
+                        <label  class='col-xs-2 control-label'>密码重复*</label>
+                        <div class='col-xs-10'>
+                            <input type='password' class='form-control ' name='password1' id='password1'>
+                        </div>
+                    </div>
+                    <div class='form-group row'>
+                        <label  class='col-xs-2 control-label'>性别*</label>
+                        <div class='col-xs-10'>
+                            <input type='radio' name='visitorGender'  value="男">男
+                            <input type='radio' name='visitorGender' value="女">女
+                        </div>
+                    </div>
+                    <div class='form-group row'>
+                        <label  class='col-xs-2 control-label'>住址*</label>
+                        <div class='col-xs-10'>
+                            <input type='text' class='form-control ' name='visitorPhone' id='visitorPhone'>
+                        </div>
+                    </div>
+                    <div class='form-group'>
+                        <div class='col-xs-10 col-xs-offset-2'>
+                            <input  id="submit" class="submit btn btn-default" type="button" value="注册">
+                            <input  class="reset btn btn-default" type="reset" value="重置">
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+<script type="text/javascript" src="vendors/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="vendors/bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="vendors/bootstrap-table/js/bootstrap-table.min.js"></script>
+<script type="text/javascript" src="vendors/bootstrap-table/js/bootstrap-table-zh-CN.min.js"></script>
+<script type="text/javascript" src="module/js/common/common.js"></script>
+
+<script language="javascript">
+
+    $(function() {
+        $("#myDatepicker").daterangepicker({
+            singleDatePicker: true,
+            showDropdowns: true,
+            autoUpdateInput: false,
+            timePicker24Hour: true,
+            timePicker: false,
+            "locale": {
+                format: 'YYYY-MM-DD HH:mm',
+            }
+        },function(start,end,label){
+            beginTimeTake = start;
+            if(!this.startDate){
+                $("#visitorDate").val("");
+            }else{
+                var date = this.startDate.format(this.locale.format);
+                date = date.split(" ")[0];
+                $("#visitorDate").val(date);
+            }
+        });
+    });
+
+    function Validate() {
+        return true;
+    }
+    $("#submit").click(function(){
+        var visitorGender = $('input[name="visitorGender"]').val();
+        var accountId = $("#accountId").val();
+        var password = $("#password").val();
+        var password1 = $("#password1").val();
+        var visitorPhone = $("#visitorPhone").val();
+        var visitorDate = $("#visitorDate").val();
+        if(visitorGender == "" || accountId == "" || password == "" || password1 == "" || visitorPhone == "" || visitorDate == ""){
+            alert("请将信息填写完整");
+            return;
+        }
+        if(password != password1){
+            alert("两次密码不匹配");
+            return;
+        }
+        if(!isPoneAvailable(visitorPhone) ){
+            alert("电话号码格式错误");
+            return;
+        }
+        $.ajax({
+            url: "visitor/createVisitor.action",
+            type: "post",
+            data: {
+                "visitor.visitorGender": visitorGender,
+                "visitor.visitorPhone": visitorPhone,
+                "visitor.visitorDate": visitorDate,
+                "visitorAccount.accountId": accountId,
+                "visitorAccount.password": password
+            },
+            dataType: "json",
+            success: function(responseText){
+                alert(responseText);
+                location.href = "visitorLogin.jsp";
+            }
+        });
+    });
+
+    $("#accountId").blur(function(){
+        var accountId = $("#accountId").val();
+        if(!isNumberAvailable(accountId)){
+            alert("账号由纯数字组成");
+            return;
+        }
+        $.ajax({
+            url: "visitorAccount/hasVisitorAccount",
+            type: "post",
+            data: {
+                "visitorAccount.accountId": accountId
+            },
+            dataType: "json",
+            success: function(responseText){
+                if(!responseText == ""){
+                    alert(responseText);
+                }
+            }
+        });
+    });
+
+    function isNumberAvailable(number){
+        var myreg = /^[0-9]*$/;
+        if (!myreg.test(number)) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+</script>
+</body>
+</html>

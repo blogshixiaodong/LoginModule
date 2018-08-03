@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <!-- 类的全限定名 -->
-<mapper namespace="cn.com.bosssoft.cn.com.bosssoft.mapper.UserMapper">
+<mapper namespace="cn.com.bosssoft.mapper.UserMapper">
     <!-- 自定义返回结果集 -->
-    <resultMap id="user" type="cn.com.bosssoft.cn.com.bosssoft.model.User">
+    <resultMap id="user" type="cn.com.bosssoft.model.User">
         <id property="id" column="id" javaType="java.lang.Integer" />
         <result property="username" column="username" javaType="java.lang.String" />
         <result property="password" column="password" javaType="java.lang.String" />
     </resultMap>
 
-    <select id="selectUserList" parameterType="cn.com.bosssoft.cn.com.bosssoft.model.User" resultMap="user">
+    <select id="selectUserList" parameterType="cn.com.bosssoft.model.User" resultMap="user">
         SELECT * FROM user;
     </select>
 
@@ -17,7 +17,7 @@
         SELECT * FROM user WHERE username = #{username};
     </select>
 
-    <insert id="insertUser" parameterType="cn.com.bosssoft.cn.com.bosssoft.model.User">
+    <insert id="insertUser" parameterType="cn.com.bosssoft.model.User">
         INSERT INTO user VALUES(#{username}, #{password});
     </insert>
 
