@@ -91,7 +91,7 @@
             return false;
         }
         if(password != password1){
-            alert("两次尼玛不匹配");
+            alert("两次密码不匹配");
             return false;
         }
         return true;
