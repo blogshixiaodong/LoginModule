@@ -10,7 +10,7 @@ public class Account {
 
     private String password;
 
-    private User user;
+    private Integer userId;
 
     public Integer getAccountId() {
         return accountId;
@@ -28,11 +28,11 @@ public class Account {
         this.password = password;
     }
 
-    public User getUser() {
-        return user;
+    public Integer getUserId() {
+        return userId;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setUserId(Integer userId) {
+        this.userId = userId;
     }
 }
