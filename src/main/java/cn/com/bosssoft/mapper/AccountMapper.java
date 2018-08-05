@@ -17,5 +17,4 @@ public interface AccountMapper {
 
     Account selectAccountById(Integer accountId);
 
-
 }

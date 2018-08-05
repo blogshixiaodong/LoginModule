@@ -1,6 +1,7 @@
 package cn.com.bosssoft.mapper;
 
 import cn.com.bosssoft.model.User;
+import org.apache.ibatis.annotations.Param;
 
 import javax.swing.*;
 import java.io.IOException;
@@ -12,7 +13,7 @@ import java.util.List;
  */
 public interface UserMapper {
 
-    List<User> selectUserList() throws IOException;
+    List<User> selectUserList(@Param("currentIndex")int currentIndex, @Param("pageSize") int pageSize) throws IOException;
 
     User selectUserById(Integer userId) throws IOException;
 
@@ -22,5 +23,7 @@ public interface UserMapper {
     * @return : Integer
     */
     Integer insertUser(User user) throws IOException;
+
+    Integer selectUserCount() throws IOException;
 
 }

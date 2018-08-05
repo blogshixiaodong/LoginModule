@@ -1,9 +1,8 @@
 package cn.com.bosssoft.controller;
 
 import cn.com.bosssoft.model.Account;
-import cn.com.bosssoft.model.User;
-import cn.com.bosssoft.server.impl.AccountServer;
-import cn.com.bosssoft.server.impl.UserServer;
+import cn.com.bosssoft.server.AccountServer;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,13 +18,15 @@ public class LoginController {
     @Autowired
     private AccountServer accountServer;
 
-    @RequestMapping("login")
+    @RequestMapping("/login")
     public String login(Account account) {
         boolean loginResult = accountServer.loginCheck(account);
         if(loginResult) {
-            return "success";
+            return "redirect: ../user_list.jsp";
         }
-        return "error";
+        return "redirect: error.jsp";
     }
+
+
 
 }

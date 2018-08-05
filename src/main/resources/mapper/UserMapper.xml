@@ -12,12 +12,16 @@
         <result property="password" column="password" javaType="java.lang.String" />
     </resultMap>
 
-    <select id="selectUserList" parameterType="cn.com.bosssoft.model.User" resultMap="user">
-        SELECT * FROM user;
+    <select id="selectUserList" resultMap="user">
+        SELECT * FROM user LIMIT #{currentIndex}, #{pageSize};
     </select>
 
     <select id="selectUserByUsername" resultMap="user">
         SELECT * FROM user WHERE username = #{username};
+    </select>
+
+    <select id="selectUserCount" resultType="java.lang.Integer">
+        SELECT COUNT(*) FROM user;
     </select>
 
 </mapper>
