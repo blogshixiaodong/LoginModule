@@ -65,9 +65,29 @@
         </div>
     </div>
 
+<<<<<<< HEAD
     <script type="text/javascript" src="vendors/jquery/jquery.min.js"></script>
     <script type="text/javascript" src="vendors/bootstrap/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="module/js/common/common.js"></script>
 
+    <script>
+        function validate(){
+            var gender = $('input[name="gender"]').val();
+            var accountId = $("#accountId").val();
+            var password = $("#password").val();
+            var pazssword1 = $("#password1").val();
+            var username = $("#username").val();
+            var address = $("#address").val();
+            if(gender == "" || accountId == "" || password== "" || password1 == "" || username == "" || address == ""){
+                alert("请将信息填写完整");
+                return false;
+            }
+            if(password != password1){
+                alert("两次密码不匹配");
+                return false;
+            }
+            return true;
+        }
+    </script>
 </body>
 </html>
