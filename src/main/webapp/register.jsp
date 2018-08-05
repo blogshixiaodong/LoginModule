@@ -65,11 +65,9 @@
         </div>
     </div>
 
-<<<<<<< HEAD
     <script type="text/javascript" src="vendors/jquery/jquery.min.js"></script>
     <script type="text/javascript" src="vendors/bootstrap/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="module/js/common/common.js"></script>
-
     <script>
         function validate(){
             var gender = $('input[name="gender"]').val();
